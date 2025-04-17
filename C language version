@@ -1,0 +1,65 @@
+#include <stdio.h>
+//Use string.h to use strchr and strchrr function
+#include <string.h>
+#include<stdbool.h>
+#include <ctype.h>
+
+bool Alphaneumeric(char c) {
+    return(c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9');
+}
+
+int main(){
+    char string[100];
+    printf("Enter a string:\n");
+    fgets(string, sizeof(string), stdin);
+    bool isPalindrome = true;
+    int len = strlen(string);
+    if (string[len - 1] == '\n' || string[len - 1] == '\0')
+    {
+        len--;
+    }
+    
+
+     
+    for (int i = 0; i <len; i++)
+    {
+        for (int j = len; j > 0; j--)
+        {
+
+            if (!Alphaneumeric(string[i]))
+            {
+                continue;
+            }
+            else if (!Alphaneumeric(string[j]))
+            {
+                continue;
+            }
+            
+            
+            else if (tolower(string[i]) != tolower(string[j]))
+            {
+                isPalindrome = false;
+                break;
+            }
+            else
+            {
+                isPalindrome = true;
+                break;
+            }
+            
+        }
+        
+    }
+    
+    if (isPalindrome)
+    {
+        printf("The string is a palindrome.\n");
+    }
+    else
+    {
+        printf("The string is not a palindrome.\n");
+    }
+    
+    
+    return 0;
+}
